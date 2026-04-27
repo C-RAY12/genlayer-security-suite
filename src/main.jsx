@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 
-// ─── CSS Injection ──────────────────────────────────────────────────────────
+// ─── CSS Injection ────────────────────────────────────────────────────────────
 const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -112,7 +112,7 @@ function buildDecision(prompt) {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-// ─── State Engine ──────────────────────────────────────────────────────────
+// ─── State Engine ────────────────────────────────────────────────────────────
 function useSecurityEngine() {
   const [prompt, setPrompt]   = useState("");
   const [logs, setLogs]       = useState([]);
@@ -147,7 +147,7 @@ function useSecurityEngine() {
   return { prompt, setPrompt, logs, running, batchRunning, batchProgress, runSingle, runBatch, clearLogs };
 }
 
-// ─── Clipboard ───────────────────────────────────────────────────────────
+// ─── Clipboard ───────────────────────────────────────────────────────────────
 function useCopy() {
   const [copiedId, setCopiedId] = useState(null);
   const copy = useCallback((id, text) => {
@@ -435,7 +435,7 @@ function Td({ children, mono, dim, style, title }) {
   );
 }
 
-// ─── App Root ───────────────────────────────────────────────────────────
+// ─── App Root ───────────────────────────────────────────────────────────────
 export default function App() {
   const { prompt, setPrompt, logs, running, batchRunning, batchProgress, runSingle, runBatch, clearLogs } = useSecurityEngine();
 
@@ -461,3 +461,9 @@ export default function App() {
     </>
   );
 }
+
+import { createRoot } from 'react-dom/client';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<App />);
